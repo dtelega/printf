@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/13 15:45:44 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/15 17:00:48 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	get_flag(t_specifer *specifer, char cur)
 	if (cur == '-')
 		specifer->flag_minus = cur;
 	else if (cur == '+')
-		specifer->flag_plus = cur;
+		specifer->flag_plus = "+";
 	else if (cur == ' ')
 		specifer->flag_space = cur;
 	else if (cur == '#')

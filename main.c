@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:10:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/13 15:47:26 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/15 20:16:08 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,30 @@ int		main(int ac, char **av)
 	char    *s;
 	s = "hello world\n";
 	long int li;
-	li = 9000000000;
+	li = 9000000000000000000;
 		
 	if (ac == 0 || av == 0)
 		return (0);
 	int i;
 	i = -1009987;
 
-	ft_p = ft_printf("%-+ #010d\n", 100);
-	p =       printf("%-10d\n", 100);
+	ft_p = ft_printf("%-20.10u\n", -122235323);
+	p =       printf("%-20.10u\n", -122235323);
 	printf("ft_p = %i\n   p = %i\n", ft_p, p);
 
-/*	
 
-	ft_printf ("1. Вывод простой строки\n");
 
-	ft_printf ("\n2. Вывод целых чисел\n");
 
-	ft_printf ("2.1 Вывод числа 123 с форматом по умолчанию:\n");
+
+
+/*
 	{ int d1=123;
 		ft_p = ft_printf ("%d\n",d1);
 		p = printf ("%d\n",d1);
-		ft_printf("ft_p[%d], p[%d]", ft_p, p);
 	}
-	ft_printf ("\n2.2 Вывод чисел c выравниванием по правому краю:\n");
 	{ int d1=123, d2=42, d3=1543;
-		ft_p = ft_printf ("%6d\n%6d\n%6d\n",d1,d2,d3);
-		p = printf ("%6d\n%6d\n%6d\n",d1,d2,d3);
-		ft_printf("ft_p[%d], p[%d]", ft_p, p);
+		ft_printf ("%6d\n%6d\n%6d\n",d1,d2,d3);
+		printf ("%6d\n%6d\n%6d\n",d1,d2,d3);
 	}
 	ft_printf ("\n2.3 Вывод чисел c выравниванием по левому краю:\n");
 	{ int d1=123, d2=42, d3=1543;
@@ -180,7 +176,8 @@ int		main(int ac, char **av)
 		fflush (stdout);
 		ft_printf ("%s",d1);
 		fflush (stdout);
-		}*/
+		}
+*/
 	return 0;
 
 }

@@ -6,13 +6,13 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 19:13:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/12 15:42:30 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/15 20:13:43 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-char		*ft_itoa_long(long int n)
+char		*ft_itoa_l(long int n)
 {
 	long long int	nb;
 	size_t			len;
@@ -20,7 +20,7 @@ char		*ft_itoa_long(long int n)
 	int				check_for_neg;
 
 	nb = n;
-	len = ft_intlen(n);
+	len = ft_longintlen(n);
 	check_for_neg = 0;
 	if (nb < 0)
 	{
