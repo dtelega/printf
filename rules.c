@@ -25,6 +25,8 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 		specifer->flag_zero = '\0';
 	if (specifer->flag_space && specifer->flag_plus)
 		specifer->flag_space = '\0';
+	if (specifer->flag_zero && specifer->accur)
+	  specifer->flag_zero = '\0';
 	if (specifer->flag_zero)
 	{
 		i = 0;
