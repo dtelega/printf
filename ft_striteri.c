@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:27:33 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 18:58:30 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 19:00:54 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	get_flag(t_specifer *specifer, char cur)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (cur == '-')
-		specifer->flag_minus = cur;
-	else if (cur == '+')
-		specifer->flag_plus = ft_strdup("+\0");
-	else if (cur == ' ')
-		specifer->flag_space = cur;
-	else if (cur == '#')
-		specifer->flag_hesh = cur;
-	else if (cur == '0')
-		specifer->flag_zero = cur;
-	else
+	int		i;
+
+	if (!s || !f)
 		return ;
+	i = 0;
+	while (*s)
+		f(i++, s++);
 }

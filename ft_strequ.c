@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:27:33 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 19:55:08 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/10 14:15:52 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	get_flag(t_specifer *specifer, char cur)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	if (cur == '-')
-		specifer->flag_minus = cur;
-	else if (cur == '+')
-		specifer->flag_plus = ft_strdup("+\0");
-	else if (cur == ' ')
-		specifer->flag_space = cur;
-	else if (cur == '#')
-		specifer->flag_hesh = cur;
-	else if (cur == '0')
-		specifer->flag_zero = cur;
-	else
-		return ;
+	if (!s1 || !s2 || (*s1 == '\0' && *s2 != '\0') ||
+		(*s1 != '\0' && *s2 == '\0'))
+		return (0);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+		if ((!*s1 && *s2) || (*s1 && !*s2))
+			return (0);
+	}
+	return (1);
 }

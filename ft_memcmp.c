@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:27:33 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 15:39:52 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 16:17:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	get_flag(t_specifer *specifer, char cur)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (cur == '-')
-		specifer->flag_minus = cur;
-	else if (cur == '+')
-		specifer->flag_plus = ft_strdup("+\0");
-	else if (cur == ' ')
-		specifer->flag_space = cur;
-	else if (cur == '#')
-		specifer->flag_hesh = cur;
-	else if (cur == '0')
-		specifer->flag_zero = cur;
-	else
-		return ;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
+
+	str1 = s1;
+	str2 = s2;
+	while (n)
+	{
+		if (*str1 != *str2)
+			return ((int)(*str1 - *str2));
+		str1++;
+		str2++;
+		n--;
+	}
+	return (0);
 }

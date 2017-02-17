@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:57:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/15 18:03:42 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 17:30:56 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 		specifer->flag_zero = '\0';
 	if (specifer->flag_space && specifer->flag_plus)
 		specifer->flag_space = '\0';
-	if (specifer->flag_zero && specifer->accur)
-	  specifer->flag_zero = '\0';
+	if (specifer->flag_zero && specifer->accur >= 0)
+		specifer->flag_zero = '\0';
 	if (specifer->flag_zero)
 	{
 		i = 0;
 		while (s[i] == ' ')
 			s[i++] = '0';
-		if (s[i] == '+' || s[i] == '-')
+		if (i > 0 && (s[i] == '-' || s[i] == '+'))
 		{
 			s[0] = s[i];
 			s[i] = '0';
@@ -50,7 +50,7 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 	int		count;
 
 	s = ft_itoa(va_arg(*args, int));
-	if (s[0] == '-' && (specifer->flag_plus = "-"))
+	if (s[0] == '-' && (specifer->flag_plus = ft_strdup("-\0")))
 		s = ft_itoa(-ft_atoi(s));
 	count = (int)ft_strlen(s);
 	while (specifer->accur-- > count)

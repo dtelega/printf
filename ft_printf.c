@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:29:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/15 20:02:23 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 17:15:31 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_specifer		get_specifer(t_format *t_format, int *i)
 	int			fl;
 
 	fl = 0;
+	specifer.accur = -1;
 	while ((cur = t_format->format[*i + (fl++)]) && (its_tr(cur) || 
 		   (its_modify(cur) || its_flag(cur, t_format->format[*i + fl - 2]) ||
 			cur == '.' || (cur >= '0' && cur <= '9'))))
@@ -51,10 +52,10 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 	else if (specifer->tr == 'c' || specifer->tr == 'C')    // done
 	{
 		s[0] = va_arg(*args, int);
-		c_C(specifer, s, t_format);
+		c_c(specifer, s, t_format);
 	}
 	else if (specifer->tr == 's' || specifer->tr == 'S') // done
-		s_S(specifer, va_arg(*args, char *), t_format);
+		s_s(specifer, va_arg(*args, char *), t_format);
 	else if (specifer->tr == 'D')
 		s = ft_itoa_l(va_arg(*args, long int));
 	else if (specifer->tr == '%')            // done
@@ -62,11 +63,11 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 	else if (specifer->tr == 'f')
 		s = ft_dtoa(va_arg(*args, double), 6);
 	else if (specifer->tr == 'o' || specifer->tr == 'O') // done, need MOD
-		o_O(ft_itoa_base(va_arg(*args, int), 8), specifer, t_format);
+		o_o(ft_itoa_base_un(va_arg(*args, unsigned int), 8), specifer, t_format);
 	else if (specifer->tr == 'x' || specifer->tr == 'X') // done, need MOD
-		x_X(ft_itoa_base(va_arg(*args, int), 16), specifer, t_format);
+		x_x(ft_itoa_base_un(va_arg(*args, unsigned int), 16), specifer, t_format);
 	if (specifer->tr == 'u' || specifer->tr == 'U')
-		u_U(ft_itoa(va_arg(*args, unsigned int)), specifer, t_format);
+		u_u(ft_itoa_base_un(va_arg(*args, unsigned int), 10), specifer, t_format);
 }
 
 void	ft_convers_printf(t_format *t_format, va_list *args)
@@ -85,15 +86,15 @@ void	ft_convers_printf(t_format *t_format, va_list *args)
 			specifer = get_specifer(t_format, &i);
 // ----------test----- 
 /*printf("      SPECIFER:\n");
-printf("        flag     :%c|\n", specifer.flag_minus);
-printf("        flag     :%s|\n", specifer.flag_plus);
-printf("        flag     :%c|\n", specifer.flag_space);
-printf("        flag     :%c|\n", specifer.flag_hesh);
-printf("        flag     :%c|\n", specifer.flag_zero);
-printf("        weight   :%d|\n", specifer.weight);
-printf("        accur    :%d|\n", specifer.accur);
-printf("        modify   :%c|\n", specifer.modify);
-printf("        tr       :%c|\n", specifer.tr);*/
+printf("        flag_minus :%c|\n", specifer.flag_minus);
+printf("        flag_plus  :%s|\n", specifer.flag_plus);
+printf("        flag_space :%c|\n", specifer.flag_space);
+printf("        flag_hesh  :%c|\n", specifer.flag_hesh);
+printf("        flag_zero  :%c|\n", specifer.flag_zero);
+printf("        weight     :%d|\n", specifer.weight);
+printf("        accur      :%d|\n", specifer.accur);
+printf("        modify     :%c|\n", specifer.modify);
+printf("        tr         :%c|\n", specifer.tr);*/
 // --------------------;
 			print_shit(&specifer, args, t_format);
 		}

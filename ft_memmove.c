@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:27:33 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 14:38:55 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 15:10:18 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	get_flag(t_specifer *specifer, char cur)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (cur == '-')
-		specifer->flag_minus = cur;
-	else if (cur == '+')
-		specifer->flag_plus = ft_strdup("+\0");
-	else if (cur == ' ')
-		specifer->flag_space = cur;
-	else if (cur == '#')
-		specifer->flag_hesh = cur;
-	else if (cur == '0')
-		specifer->flag_zero = cur;
+	unsigned char		*d;
+	unsigned const char	*s;
+	size_t				i;
+
+	i = 0;
+	d = (unsigned char *)dst;
+	s = (unsigned const char *)src;
+	if (s > d)
+	{
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
 	else
-		return ;
+	{
+		i = len;
+		while (i > 0)
+		{
+			d[i - 1] = s[i - 1];
+			i--;
+		}
+	}
+	return (d);
 }

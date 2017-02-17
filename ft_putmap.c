@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   ft_putmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:27:33 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 19:47:22 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/09 16:40:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	get_flag(t_specifer *specifer, char cur)
+void	ft_putmap(char **s)
 {
-	if (cur == '-')
-		specifer->flag_minus = cur;
-	else if (cur == '+')
-		specifer->flag_plus = ft_strdup("+\0");
-	else if (cur == ' ')
-		specifer->flag_space = cur;
-	else if (cur == '#')
-		specifer->flag_hesh = cur;
-	else if (cur == '0')
-		specifer->flag_zero = cur;
-	else
+	int		i;
+
+	if (!s)
 		return ;
+	i = 0;
+	while (*s)
+	{
+		ft_putstr("[");
+		ft_putchar(i + '0');
+		ft_putstr("]->");
+		ft_putstr(*s);
+		ft_putstr("<-");
+		ft_putchar('\n');
+		s++;
+		i++;
+	}
 }
