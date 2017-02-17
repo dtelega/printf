@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:10:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:30:28 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 18:01:44 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		main(int ac, char **av)
 	int i;
 	i = -1009987;
 
-	ft_p = ft_printf("% d\n", -42);
-	p =       printf("hello [%d] here d\n", 0);
+	ft_p = ft_printf("%03.2d\n", 0);
+	p =       printf("%03.2d\n", 0);
 	printf("ft_p = %i\n   p = %i\n", ft_p, p);
 	return 0;
 }

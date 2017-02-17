@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:29:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:15:31 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 17:56:57 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_specifer		get_specifer(t_format *t_format, int *i)
 	int			fl;
 
 	fl = 0;
-	specifer.accur = -1;
+	specifer = clean_spec(&specifer);
 	while ((cur = t_format->format[*i + (fl++)]) && (its_tr(cur) || 
 		   (its_modify(cur) || its_flag(cur, t_format->format[*i + fl - 2]) ||
 			cur == '.' || (cur >= '0' && cur <= '9'))))

@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:57:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:30:56 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 18:02:55 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 {
 	int		i;
 
-	if (specifer->flag_zero && specifer->flag_minus)
+	if (specifer->flag_zero == '0' && specifer->flag_minus)
 		specifer->flag_zero = '\0';
-	if (specifer->flag_space && specifer->flag_plus)
+	if (specifer->flag_space == ' ' && specifer->flag_plus)
 		specifer->flag_space = '\0';
-	if (specifer->flag_zero && specifer->accur >= 0)
+	if (specifer->flag_zero == '0' && specifer->accur >= 0)
 		specifer->flag_zero = '\0';
-	if (specifer->flag_zero)
+	if (specifer->flag_zero == '0')
 	{
 		i = 0;
 		while (s[i] == ' ')
@@ -50,13 +50,18 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 	int		count;
 
 	s = ft_itoa(va_arg(*args, int));
-	if (s[0] == '-' && (specifer->flag_plus = ft_strdup("-\0")))
+	if (s[0] == '-' && (specifer->flag_plus = '-'))
 		s = ft_itoa(-ft_atoi(s));
 	count = (int)ft_strlen(s);
 	while (specifer->accur-- > count)
 		s = ft_strjoin("0", s);
 	if (specifer->flag_plus)
-		s = ft_strjoin(specifer->flag_plus, s);
+	{
+		if (specifer->flag_plus == '+')
+			s = ft_strjoin("+", s);
+		else if (specifer->flag_plus == '-')
+			s = ft_strjoin("-", s);
+	}
 	else if (!specifer->flag_plus && specifer->flag_space)
 		s = ft_strjoin(" ", s);
 	count = ft_strlen(s);
