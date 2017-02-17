@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:57:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 18:02:55 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 20:27:02 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 	char	*s;
 	int		count;
 
-	s = ft_itoa(va_arg(*args, int));
-	if (s[0] == '-' && (specifer->flag_plus = '-'))
-		s = ft_itoa(-ft_atoi(s));
+	s = d_i_get_s(args, specifer);
 	count = (int)ft_strlen(s);
 	while (specifer->accur-- > count)
 		s = ft_strjoin("0", s);

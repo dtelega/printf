@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:21:01 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 16:41:31 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/17 20:24:25 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	c_c(t_specifer *specifer, char *c, t_format *t_format)
 		while (i++ + 1 != specifer->weight)
 		{
 			if (!specifer->flag_minus)
-				res = ft_strjoin(" ", res);
+			{
+				if (specifer->flag_zero)
+					res = ft_strjoin("0", res);
+				else
+					res = ft_strjoin(" ", res);
+			}
 			else
 				res = ft_strjoin(res, " ");
 		}
