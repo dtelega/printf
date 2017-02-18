@@ -6,14 +6,14 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:17:17 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 13:32:20 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 15:50:30 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTPRINTF_H
 # define FTPRINTF_H
 # include <stdarg.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 # include <stdio.h>
 
