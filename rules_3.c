@@ -6,16 +6,20 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 19:08:56 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 16:54:43 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 13:51:12 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-void	o_o(char *s, t_specifer *specifer, t_format *t_format)
+void	o_o(va_list *args, t_specifer *specifer, t_format *t_format)
 {
 	int		count;
+	char	*s;
 
+	s = o_o_get_s(args, specifer);
+	if (!ft_strcmp(s, "0") && specifer->accur == 0)
+		s = "\0";
 	count = (int)ft_strlen(s);
 	if (specifer->flag_zero && specifer->accur == -1 && !specifer->flag_minus)
 		specifer->accur = specifer->weight;
@@ -35,15 +39,16 @@ void	o_o(char *s, t_specifer *specifer, t_format *t_format)
 	t_format->len += ft_strlen(s);
 }
 
-void	x_x(char *str, t_specifer *specifer, t_format *t_format)
+void	x_x(va_list *args, t_specifer *specifer, t_format *t_format)
 {
 	int		count;
 	char	*s;
 
-	s = ft_strnew(ft_strlen(str));
-	s = ft_strcpy(s, str);
+	s = x_x_get_s(args, specifer);
 	if (!ft_strcmp(s, "0"))
 		specifer->flag_hesh = '\0';
+	if (!ft_strcmp(s, "0") && specifer->accur == 0)
+		s = "\0";
 	if (specifer->accur == -1 && specifer->flag_zero && !specifer->flag_minus)
 		specifer->accur = specifer->weight - (!specifer->flag_hesh ? 0 : 2);
 	count = (int)ft_strlen(s);
@@ -65,10 +70,12 @@ void	x_x(char *str, t_specifer *specifer, t_format *t_format)
 	t_format->len += ft_strlen(s);
 }
 
-void	u_u(char *s, t_specifer *specifer, t_format *t_format)
+void	u_u(va_list *args, t_specifer *specifer, t_format *t_format)
 {
 	int		count;
+	char	*s;
 
+	s = u_u_get_s(args, specifer);
 	count = (int)ft_strlen(s);
 	if (specifer->flag_zero && specifer->accur == -1 && !specifer->flag_minus)
 		specifer->accur = specifer->weight;

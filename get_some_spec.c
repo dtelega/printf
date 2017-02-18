@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/12 11:41:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/12 16:11:20 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 12:59:30 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ int		its_flag(char cur, char prev)
 
 void	get_modify(char cur, t_specifer *specifer, char next, int *i)
 {
-	if (cur == 'l' && next == 'l')
+	if (cur == 'z')
+		specifer->modify = 'z';
+	else if (cur == 'j')
+		specifer->modify = 'j';
+	else if (cur == 'l' && next == 'l')
 		specifer->modify = 'L';
 	else if (cur == 'l' && next != 'l' && specifer->modify != 'L')
 		specifer->modify = 'l';
 	else if (cur == 'h' && next != 'h' && specifer->modify != 'L' &&
-			 specifer->modify != 'l')
+			 specifer->modify != 'l' && specifer->modify != 'z' &&
+			 specifer->modify != 'j')
 		specifer->modify = 'h';
 	else if (cur == 'h' && next == 'h' && !specifer->modify)
 	{
@@ -38,7 +43,7 @@ void	get_modify(char cur, t_specifer *specifer, char next, int *i)
 
 int		its_modify(char cur)
 {
-	if (cur == 'l' || cur == 'h')
+	if (cur == 'l' || cur == 'h' || cur == 'j' || cur == 'z')
 		return (1);
 	return (0);
 }

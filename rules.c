@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:57:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 20:27:02 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 13:53:03 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 	int		count;
 
 	s = d_i_get_s(args, specifer);
+	if (!ft_strcmp(s, "0") && specifer->accur == 0)
+		s = "\0";
 	count = (int)ft_strlen(s);
 	while (specifer->accur-- > count)
 		s = ft_strjoin("0", s);

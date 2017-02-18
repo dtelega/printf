@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:17:17 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 19:46:25 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 13:32:20 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,19 @@ typedef struct		s_dtoa
 	size_t	ipart;
 }					t_dtoa;
 
-
+char				*ft_itoa_base_uintmax(uintmax_t value, int base);
+char				*ft_itoa_base_lun(unsigned long int value, int base);
+char				*u_u_get_s(va_list *args, t_specifer *specifer);
+char				*o_o_get_s(va_list *args, t_specifer *specifer);
+char				*x_x_get_s(va_list *args, t_specifer *specifer);
 size_t				ft_llintlen(long long int a);
 char				*ft_itoa_ll(long long int n);
 char				*ft_itoa_sig(signed char n);
 char				*d_i_get_s(va_list *args, t_specifer *specifer);
 t_specifer			clean_spec(t_specifer *specifer);
-void				u_u(char *s, t_specifer *specifer, t_format *t_format);
-void				o_o(char *s, t_specifer *specifer, t_format *t_format);
-void				x_x(char *s, t_specifer *specifer, t_format *t_format);
+void				u_u(va_list *args, t_specifer *specifer, t_format *t_format);
+void				o_o(va_list *args, t_specifer *specifer, t_format *t_format);
+void				x_x(va_list *args, t_specifer *specifer, t_format *t_format);
 void				s_s(t_specifer *specifer, char *s, t_format *t_format);
 void				procent(t_specifer *specifer, t_format *format);
 void				c_c(t_specifer *specifer, char *c, t_format *t_format);

@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:29:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 17:56:57 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 14:15:10 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ t_specifer		get_specifer(t_format *t_format, int *i)
 		else if (its_tr(cur))
 		{
 			specifer.tr = cur;
-			break ;
+			*i += fl - 1;
+			return (specifer);
 		}
 	}
-	*i += fl - 1;
+	if ((cur = t_format->format[*i + fl - 2] == '%'))
+		(*i)--;
 	return (specifer);
 }
 
@@ -63,11 +65,16 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 	else if (specifer->tr == 'f')
 		s = ft_dtoa(va_arg(*args, double), 6);
 	else if (specifer->tr == 'o' || specifer->tr == 'O') // done, need MOD
-		o_o(ft_itoa_base_un(va_arg(*args, unsigned int), 8), specifer, t_format);
+	{
+		o_o(args, specifer, t_format);
+//		o_o(ft_itoa_base_un(va_arg(*args, unsigned int), 8), specifer, t_format);
+	}
 	else if (specifer->tr == 'x' || specifer->tr == 'X') // done, need MOD
-		x_x(ft_itoa_base_un(va_arg(*args, unsigned int), 16), specifer, t_format);
+		x_x(args, specifer, t_format);
+//x_x(ft_itoa_base_un(va_arg(*args, unsigned int), 16), specifer, t_format);
 	if (specifer->tr == 'u' || specifer->tr == 'U')
-		u_u(ft_itoa_base_un(va_arg(*args, unsigned int), 10), specifer, t_format);
+		u_u(args, specifer, t_format);
+//		u_u(ft_itoa_base_un(va_arg(*args, unsigned int), 10), specifer, t_format);
 }
 
 void	ft_convers_printf(t_format *t_format, va_list *args)
@@ -83,6 +90,8 @@ void	ft_convers_printf(t_format *t_format, va_list *args)
 		if (current == '%')
 		{
 			i++;
+			if (!t_format->format[i])
+				return ;
 			specifer = get_specifer(t_format, &i);
 // ----------test----- 
 /*printf("      SPECIFER:\n");
