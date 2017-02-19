@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/30 18:26:09 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/08 12:15:44 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	long long int nb;
+	const char	*res;
+	const char	*find;
+	const char	*temp;
+	size_t		i;
 
-	nb = n;
-	if (nb < 0)
+	if (!*little)
+		return ((char *)big);
+	while (*big && len)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		i = len;
+		res = big;
+		temp = big;
+		find = little;
+		while (*temp == *find && *find && i)
+		{
+			temp++;
+			find++;
+			i--;
+		}
+		if (!*find)
+			return ((char *)res);
+		big++;
+		len--;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	return (0);
 }

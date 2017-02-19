@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 19:47:53 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/07 17:34:16 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	long long int nb;
+	char		*str;
+	size_t		i;
 
-	nb = n;
-	if (nb < 0)
+	if (!s || !f)
+		return (NULL);
+	str = ft_strdup(s);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar('-');
-		nb *= -1;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	return (str);
 }

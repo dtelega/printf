@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/03 15:47:26 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/08 12:35:47 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	long long int nb;
+	unsigned int		i;
+	char				*str;
 
-	nb = n;
-	if (nb < 0)
+	if (!s)
+		return (NULL);
+	str = (char *)malloc((len + 1) * sizeof(*str));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[start + i] && len)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		str[i] = s[start + i];
+		i++;
+		len--;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
+	while (len)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		str[i++] = '\0';
+		len--;
 	}
+	str[i] = '\0';
+	return (str);
 }

@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/03 17:46:29 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/03 17:48:12 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	long long int nb;
-
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

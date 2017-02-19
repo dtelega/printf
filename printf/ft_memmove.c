@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 14:38:55 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 15:10:18 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	long long int nb;
+	unsigned char		*d;
+	unsigned const char	*s;
+	size_t				i;
 
-	nb = n;
-	if (nb < 0)
+	i = 0;
+	d = (unsigned char *)dst;
+	s = (unsigned const char *)src;
+	if (s > d)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		i = len;
+		while (i > 0)
+		{
+			d[i - 1] = s[i - 1];
+			i--;
+		}
 	}
+	return (d);
 }

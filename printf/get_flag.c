@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   get_flag.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2017/02/12 16:12:22 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/17 17:43:51 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-void	ft_putlongnbr(long int n)
+void	get_flag(t_specifer *specifer, char cur)
 {
-	long long int nb;
-
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
+	if (cur == '-')
+		specifer->flag_minus = cur;
+	else if (cur == '+')
+		specifer->flag_plus = '+';
+	else if (cur == ' ')
+		specifer->flag_space = cur;
+	else if (cur == '#')
+		specifer->flag_hesh = cur;
+	else if (cur == '0')
+		specifer->flag_zero = cur;
 	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+		return ;
 }

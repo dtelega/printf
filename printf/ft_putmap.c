@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_putmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 19:47:22 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/09 16:40:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+void	ft_putmap(char **s)
 {
-	long long int nb;
+	int		i;
 
-	nb = n;
-	if (nb < 0)
+	if (!s)
+		return ;
+	i = 0;
+	while (*s)
 	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putstr("[");
+		ft_putchar(i + '0');
+		ft_putstr("]->");
+		ft_putstr(*s);
+		ft_putstr("<-");
+		ft_putchar('\n');
+		s++;
+		i++;
 	}
 }

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 15:49:05 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/06 16:58:34 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	long long int nb;
+	t_list	*new;
 
-	nb = n;
-	if (nb < 0)
+	new = (t_list *)malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	if (content == NULL)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		new->content = ft_memalloc(content_size);
+		new->content = ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
 	}
+	new->next = NULL;
+	return (new);
 }

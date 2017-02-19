@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   clen_spec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2017/02/17 17:49:42 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/17 17:56:17 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-void	ft_putlongnbr(long int n)
+t_specifer		clean_spec(t_specifer *specifer)
 {
-	long long int nb;
-
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	specifer->flag_minus = '\0';
+	specifer->flag_plus = '\0';
+	specifer->flag_space = '\0';
+	specifer->flag_hesh = '\0';
+	specifer->weight = 0;
+	specifer->accur = -1;
+	specifer->modify = '\0';
+	specifer->tr = '\0';
+	return (*specifer);
 }

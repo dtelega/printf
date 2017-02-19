@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 15:39:52 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 16:17:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-void	ft_putlongnbr(long int n)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	long long int nb;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-	nb = n;
-	if (nb < 0)
+	str1 = s1;
+	str2 = s2;
+	while (n)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		if (*str1 != *str2)
+			return ((int)(*str1 - *str2));
+		str1++;
+		str2++;
+		n--;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	return (0);
 }

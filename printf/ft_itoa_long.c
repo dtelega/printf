@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_itoa_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/09 19:13:00 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/15 20:13:43 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-void	ft_putlongnbr(long int n)
+char		*ft_itoa_l(long int n)
 {
-	long long int nb;
+	long long int	nb;
+	size_t			len;
+	char			*str;
+	int				check_for_neg;
 
 	nb = n;
+	len = ft_longintlen(n);
+	check_for_neg = 0;
 	if (nb < 0)
 	{
-		ft_putchar('-');
 		nb *= -1;
+		check_for_neg = 1;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
+	if (!(str = (char *)malloc((len + 1) * sizeof(*str))))
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		str[len] = nb % 10 + '0';
+		nb = nb / 10;
 	}
+	if (check_for_neg == 1)
+		str[0] = '-';
+	return (str);
 }

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlongnbr.c                                    :+:      :+:    :+:   */
+/*   ft_llintlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 17:33:31 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:40:02 by dtelega          ###   ########.fr       */
+/*   Created: 2017/02/17 19:42:56 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/18 15:20:45 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-void	ft_putlongnbr(long int n)
+size_t		ft_llintlen(long long int a)
 {
-	long long int nb;
+	size_t	i;
 
-	nb = n;
-	if (nb < 0)
+	if (a == 0)
+		return (1);
+	i = 0;
+	if (a < 0)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		a *= -1;
+		i++;
 	}
-	if (nb < 10)
-		ft_putchar(nb + '0');
-	else
+	while (a)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		a = a / 10;
+		i++;
 	}
+	return (i);
 }
