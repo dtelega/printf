@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_l.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_ll.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 15:57:35 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 15:21:50 by dtelega          ###   ########.fr       */
+/*   Created: 2017/02/18 14:35:32 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/18 15:23:41 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long int	ft_atoi_l(const char *str)
+long long int		ft_atoi_ll(const char *str)
 {
-	long int	nb;
-	int			negative;
-	int			i;
+	long long int	nb;
+	int				negative;
+	int				i;
 
 	i = 0;
 	nb = 0;

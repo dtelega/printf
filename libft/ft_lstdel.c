@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 19:58:23 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/06 20:13:40 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t		i;
+	t_list	*temp;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	if (!alst || !del)
+		return ;
+	while (*alst)
 	{
-		a *= -1;
-		i++;
+		temp = (*alst)->next;
+		del((*alst)->content, (*alst)->content_size);
+		free(*alst);
+		*alst = temp;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	*alst = NULL;
 }

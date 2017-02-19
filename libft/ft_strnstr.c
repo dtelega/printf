@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/30 18:26:09 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/08 12:15:44 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
+	const char	*res;
+	const char	*find;
+	const char	*temp;
 	size_t		i;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	if (!*little)
+		return ((char *)big);
+	while (*big && len)
 	{
-		a *= -1;
-		i++;
+		i = len;
+		res = big;
+		temp = big;
+		find = little;
+		while (*temp == *find && *find && i)
+		{
+			temp++;
+			find++;
+			i--;
+		}
+		if (!*find)
+			return ((char *)res);
+		big++;
+		len--;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	return (0);
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 19:55:08 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/10 14:15:52 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	size_t		i;
-
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	if (!s1 || !s2 || (*s1 == '\0' && *s2 != '\0') ||
+		(*s1 != '\0' && *s2 == '\0'))
+		return (0);
+	while (*s1 && *s2)
 	{
-		a *= -1;
-		i++;
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+		if ((!*s1 && *s2) || (*s1 && !*s2))
+			return (0);
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	return (1);
 }

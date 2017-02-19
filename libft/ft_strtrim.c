@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_ll.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 19:41:22 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 13:28:29 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/03 16:36:27 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/03 17:11:36 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "libft.h"
 
-char		*ft_itoa_ll(long long int n)
+char	*ft_strtrim(char const *s)
 {
-	unsigned long long int	nb;
-	size_t					len;
-	char					*str;
-	int						check_for_neg;
+	char		*str;
+	int			l;
+	int			i;
+	int			k;
 
-	nb = n;
-	len = ft_llintlen(n);
-	check_for_neg = 0;
-	if (n < 0)
-	{
-		check_for_neg = 1;
-	}
-	if (!(str = (char *)malloc((len + 1) * sizeof(*str))))
+	if (!s)
 		return (NULL);
-	str[len] = '\0';
-	while (len--)
-	{
-		str[len] = nb % 10 + '0';
-		nb = nb / 10;
-	}
-	if (check_for_neg == 1)
-		str[0] = '-';
+	l = (int)ft_strlen(s) - 1;
+	while (s[l] == '\t' || s[l] == '\n' || s[l] == ' ')
+		l--;
+	i = 0;
+	while (s[i] == '\t' || s[i] == '\n' || s[i] == ' ')
+		i++;
+	if ((l - i) <= 0)
+		l = i;
+	str = (char *)malloc((l - i + 2) * sizeof(*str));
+	if (!str)
+		return (NULL);
+	k = 0;
+	while (i <= l)
+		str[k++] = s[i++];
+	str[k] = '\0';
 	return (str);
 }

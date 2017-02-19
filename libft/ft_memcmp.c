@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 15:39:52 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 16:17:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t		i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	str1 = s1;
+	str2 = s2;
+	while (n)
 	{
-		a *= -1;
-		i++;
+		if (*str1 != *str2)
+			return ((int)(*str1 - *str2));
+		str1++;
+		str2++;
+		n--;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	return (0);
 }

@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 18:13:06 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/06 18:19:58 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	size_t		i;
-
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		a *= -1;
-		i++;
+		f(lst);
+		lst = lst->next;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
 }

@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/03 15:47:26 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/08 12:35:47 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t		i;
+	unsigned int		i;
+	char				*str;
 
-	if (a == 0)
-		return (1);
+	if (!s)
+		return (NULL);
+	str = (char *)malloc((len + 1) * sizeof(*str));
+	if (!str)
+		return (NULL);
 	i = 0;
-	if (a < 0)
+	while (s[start + i] && len)
 	{
-		a *= -1;
+		str[i] = s[start + i];
 		i++;
+		len--;
 	}
-	while (a)
+	while (len)
 	{
-		a = a / 10;
-		i++;
+		str[i++] = '\0';
+		len--;
 	}
-	return (i);
+	str[i] = '\0';
+	return (str);
 }

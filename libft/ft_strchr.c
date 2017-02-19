@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/29 23:29:07 by dtelega           #+#    #+#             */
+/*   Updated: 2016/11/29 23:39:39 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t		i;
-
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	while (*s)
 	{
-		a *= -1;
-		i++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	if (*s == c)
+		return ((char *)s);
+	return (NULL);
 }

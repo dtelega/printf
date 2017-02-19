@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/30 15:08:09 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/10 13:03:01 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
+	size_t		len;
 	size_t		i;
+	size_t		d;
 
-	if (a == 0)
-		return (1);
+	d = 0;
+	len = ft_strlen(src);
+	while (dst[d] && d < size)
+		d++;
+	if (size == d)
+		return (size + len);
+	size = size - d - 1;
 	i = 0;
-	if (a < 0)
+	while (i < size)
 	{
-		a *= -1;
+		dst[d + i] = src[i];
 		i++;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	dst[d + i] = '\0';
+	return (d + len);
 }

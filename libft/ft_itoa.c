@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/09 19:13:00 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/09 20:11:22 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+char		*ft_itoa(int n)
 {
-	size_t		i;
+	long int	nb;
+	size_t		len;
+	char		*str;
+	int			check_for_neg;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	nb = n;
+	len = ft_intlen(n);
+	check_for_neg = 0;
+	if (nb < 0)
 	{
-		a *= -1;
-		i++;
+		nb *= -1;
+		check_for_neg = 1;
 	}
-	while (a)
+	if (!(str = (char *)malloc((len + 1) * sizeof(*str))))
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
 	{
-		a = a / 10;
-		i++;
+		str[len] = nb % 10 + '0';
+		nb = nb / 10;
 	}
-	return (i);
+	if (check_for_neg == 1)
+		str[0] = '-';
+	return (str);
 }

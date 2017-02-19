@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/02 14:38:55 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 15:10:18 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t		i;
+	unsigned char		*d;
+	unsigned const char	*s;
+	size_t				i;
 
-	if (a == 0)
-		return (1);
 	i = 0;
-	if (a < 0)
+	d = (unsigned char *)dst;
+	s = (unsigned const char *)src;
+	if (s > d)
 	{
-		a *= -1;
-		i++;
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
-	while (a)
+	else
 	{
-		a = a / 10;
-		i++;
+		i = len;
+		while (i > 0)
+		{
+			d[i - 1] = s[i - 1];
+			i--;
+		}
 	}
-	return (i);
+	return (d);
 }

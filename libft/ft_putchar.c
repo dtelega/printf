@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/29 23:47:45 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/08 17:15:56 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	ft_putchar(char c)
 {
-	size_t		i;
-
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
-	{
-		a *= -1;
-		i++;
-	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	write(1, &c, 1);
 }

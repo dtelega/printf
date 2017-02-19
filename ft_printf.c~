@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:29:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:11:28 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 16:06:50 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ t_specifer		get_specifer(t_format *t_format, int *i)
 			get_modify(cur, &specifer, t_format->format[*i + fl], &(*i));
 		else if (cur == '.')
 			get_accur(&(*t_format), &(*i), &fl, &specifer);
+		else if (cur >= '0' && cur <= '9')
+			specifer.weight = specifer.weight * 10 + cur - '0';
 		else if (its_tr(cur))
 		{
 			specifer.tr = cur;
 			*i += fl - 1;
 			return (specifer);
-		}		
-		else if (cur >= '0' && cur <= '9')
-			specifer.weight = specifer.weight * 10 + cur - '0';
+		}
 	}
-	*i += fl - 2;
+	if ((cur = t_format->format[*i + fl - 2] == '%'))
+		(*i)--;
 	return (specifer);
 }
 
@@ -71,6 +72,7 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 		p_tr(args, specifer, t_format);
 	if (specifer->tr == 'u' || specifer->tr == 'U')
 		u_u(args, specifer, t_format);
+//		u_u(ft_itoa_base_un(va_arg(*args, unsigned int), 10), specifer, t_format);
 }
 
 void	ft_convers_printf(t_format *t_format, va_list *args)
@@ -92,7 +94,7 @@ void	ft_convers_printf(t_format *t_format, va_list *args)
 // ----------test----- 
 /*printf("      SPECIFER:\n");
 printf("        flag_minus :%c|\n", specifer.flag_minus);
-printf("        flag_plus  :%c|\n", specifer.flag_plus);
+printf("        flag_plus  :%s|\n", specifer.flag_plus);
 printf("        flag_space :%c|\n", specifer.flag_space);
 printf("        flag_hesh  :%c|\n", specifer.flag_hesh);
 printf("        flag_zero  :%c|\n", specifer.flag_zero);

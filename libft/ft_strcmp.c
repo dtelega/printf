@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/29 18:50:49 by dtelega           #+#    #+#             */
+/*   Updated: 2016/11/29 21:16:46 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	size_t		i;
+	int		i;
 
-	if (a == 0)
-		return (1);
 	i = 0;
-	if (a < 0)
-	{
-		a *= -1;
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

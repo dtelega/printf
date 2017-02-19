@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_putmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 19:47:22 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/09 16:40:53 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	ft_putmap(char **s)
 {
-	size_t		i;
+	int		i;
 
-	if (a == 0)
-		return (1);
+	if (!s)
+		return ;
 	i = 0;
-	if (a < 0)
+	while (*s)
 	{
-		a *= -1;
+		ft_putstr("[");
+		ft_putchar(i + '0');
+		ft_putstr("]->");
+		ft_putstr(*s);
+		ft_putstr("<-");
+		ft_putchar('\n');
+		s++;
 		i++;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
 }

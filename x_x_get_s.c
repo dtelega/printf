@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 12:31:16 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 15:56:11 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/19 13:14:26 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*x_x_get_s(va_list *args, t_specifer *specifer)
 	else if (specifer->modify == 'h' || specifer->modify == 'H')
 		s = ft_itoa_base_un(va_arg(*args, unsigned int), 16);
 	else if (specifer->modify == 'j')
-		s = ft_itoa_base_un(va_arg(*args, uintmax_t), 16);
+		s = ft_itoa_base_lun(va_arg(*args, unsigned long long), 16);
 	else if (specifer->modify == 'z')
-		s = ft_itoa_base_lun(va_arg(*args, size_t), 16);
+		s = ft_itoa_base_lun(va_arg(*args, unsigned long long), 16);
 	else
 		s = NULL;
 	res = ft_strnew(ft_strlen(s));
@@ -49,7 +49,7 @@ char	*o_o_get_s(va_list *args, t_specifer *specifer)
 	else if (specifer->modify == 'h' || specifer->modify == 'H')
 		s = ft_itoa_base_un(va_arg(*args, unsigned int), 8);
 	else if (specifer->modify == 'j')
-		s = ft_itoa_base_un(va_arg(*args, uintmax_t), 8);
+		s = ft_itoa_base_uintmax(va_arg(*args, uintmax_t), 8);
 	else if (specifer->modify == 'z')
 		s = ft_itoa_base_lun(va_arg(*args, size_t), 8);
 	else
@@ -82,7 +82,7 @@ char	*u_u_get_s(va_list *args, t_specifer *specifer)
 	else if (specifer->modify == 'h' || specifer->modify == 'H')
 		s = ft_itoa_base_un(va_arg(*args, unsigned int), 10);
 	else if (specifer->modify == 'j')
-		s = ft_itoa_base_un(va_arg(*args, uintmax_t), 10);
+		s = ft_itoa_base_uintmax(va_arg(*args, uintmax_t), 10);
 	else if (specifer->modify == 'z')
 		s = ft_itoa_base_lun(va_arg(*args, size_t), 10);
 	else

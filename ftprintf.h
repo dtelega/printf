@@ -6,14 +6,14 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:17:17 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 15:50:30 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 16:09:47 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FTPRINTF_H
 # define FTPRINTF_H
 # include <stdarg.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 # include <stdio.h>
 
@@ -56,6 +56,7 @@ char				*ft_itoa_ll(long long int n);
 char				*ft_itoa_sig(signed char n);
 char				*d_i_get_s(va_list *args, t_specifer *specifer);
 t_specifer			clean_spec(t_specifer *specifer);
+void				p_tr(va_list *args, t_specifer *specifer, t_format *t_format);
 void				u_u(va_list *args, t_specifer *specifer, t_format *t_format);
 void				o_o(va_list *args, t_specifer *specifer, t_format *t_format);
 void				x_x(va_list *args, t_specifer *specifer, t_format *t_format);
@@ -64,6 +65,7 @@ void				procent(t_specifer *specifer, t_format *format);
 void				c_c(t_specifer *specifer, char *c, t_format *t_format);
 void				d_i(t_specifer *specifer, va_list *args, t_format *t_format);
 char				*ft_itoa_l(long int n);
+long long int		ft_atoi_ll(const char *str);
 long int			ft_atoi_l(const char *str);
 char				*ft_more_memory(char *str, int size);
 int					its_tr(char c);

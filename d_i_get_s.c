@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 18:14:14 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 20:17:11 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/19 13:27:49 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ char	*d_i_get_s(va_list *args, t_specifer *specifer)
 	}
 	else if (specifer->modify == 'L')
 	{
-		s = ft_itoa_l(va_arg(*args, long long int));
-		if (s[0] == '-')
-		{
-			specifer->flag_plus = '-';
-			s = ft_itoa_l(-ft_atoi_l(s));
-		}
+		s = ft_itoa_ll(va_arg(*args, long long));
+		//if (s[0] == '-')
+		//{
+		//	specifer->flag_plus = '-';
+		//	s = ft_itoa_ll(-ft_atoi_ll(s));
+		//	}
 	}
 	else if (specifer->modify == 'h')
 	{
@@ -70,6 +70,8 @@ char	*d_i_get_s(va_list *args, t_specifer *specifer)
 			s = ft_itoa(-ft_atoi(s));
 		}
 	}
+	else if (specifer->modify == 'j' || specifer->modify == 'z')
+		s = ft_itoa_base_lun(va_arg(*args, unsigned long long), 10);
 	else
 		s = NULL;
 	res = ft_strnew(ft_strlen(s));

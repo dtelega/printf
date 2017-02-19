@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/29 20:37:36 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 19:06:56 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
+#include <stdlib.h>
 
-size_t		ft_longintlen(long int a)
+char	*ft_strdup(const char *s1)
 {
-	size_t		i;
+	char	*copy;
+	size_t	i;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
-	{
-		a *= -1;
-		i++;
-	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	i = ft_strlen(s1);
+	copy = (char *)malloc((i + 1) * sizeof(*s1));
+	if (copy != NULL)
+		ft_strcpy(copy, s1);
+	return (copy);
 }

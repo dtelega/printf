@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/30 16:13:16 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/03 17:31:05 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void		*ft_memset(void *b, int c, size_t len)
 {
-	size_t		i;
+	char	*copy;
+	size_t	i;
 
-	if (a == 0)
-		return (1);
 	i = 0;
-	if (a < 0)
-	{
-		a *= -1;
-		i++;
-	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	copy = b;
+	while (i < len)
+		copy[i++] = c;
+	return (copy);
 }

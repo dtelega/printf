@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/12/06 15:49:05 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/06 16:58:34 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	size_t		i;
+	t_list	*new;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	new = (t_list *)malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	if (content == NULL)
 	{
-		a *= -1;
-		i++;
+		new->content = NULL;
+		new->content_size = 0;
 	}
-	while (a)
+	else
 	{
-		a = a / 10;
-		i++;
+		new->content = ft_memalloc(content_size);
+		new->content = ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
 	}
-	return (i);
+	new->next = NULL;
+	return (new);
 }

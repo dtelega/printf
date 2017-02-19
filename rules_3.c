@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 19:08:56 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 13:51:12 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 16:12:56 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,16 @@ void	u_u(va_list *args, t_specifer *specifer, t_format *t_format)
 		else
 			s = ft_strjoin(" ", s);
 	}
+	ft_putstr(s);
+	t_format->len += ft_strlen(s);
+}
+
+void	p_tr(va_list *args, t_specifer *specifer, t_format *t_format)
+{
+	char	*s;
+
+	if (specifer->tr == 'p')
+		s = va_arg(*args, void *);
 	ft_putstr(s);
 	t_format->len += ft_strlen(s);
 }

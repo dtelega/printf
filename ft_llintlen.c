@@ -6,16 +6,16 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 19:42:56 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/17 19:46:12 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/18 15:20:45 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-size_t	ft_llintlen(long long int a)
+size_t		ft_llintlen(long long int a)
 {
 	size_t	i;
-	
+
 	if (a == 0)
 		return (1);
 	i = 0;

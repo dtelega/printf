@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longintlen.c                                    :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 12:47:36 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/02 17:48:14 by dtelega          ###   ########.fr       */
+/*   Created: 2016/11/30 16:42:34 by dtelega           #+#    #+#             */
+/*   Updated: 2016/12/02 14:43:33 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-size_t		ft_longintlen(long int a)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t		i;
+	char			*newdst;
+	const char		*newsrc;
 
-	if (a == 0)
-		return (1);
-	i = 0;
-	if (a < 0)
+	newdst = (char *)dst;
+	newsrc = (const char *)src;
+	while (n)
 	{
-		a *= -1;
-		i++;
+		if ((*newdst++ = *newsrc++) == c)
+			return (void *)(newdst);
+		n--;
 	}
-	while (a)
-	{
-		a = a / 10;
-		i++;
-	}
-	return (i);
+	return (NULL);
 }

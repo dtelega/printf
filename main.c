@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:10:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 14:14:27 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/19 14:24:22 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		main(int ac, char **av)
 	int i;
 	i = -1009987;
 	
-	ft_p = ft_printf("% 10\n");
-	p =       printf("% 10\n");
+	ft_p = ft_printf("@moulitest: %5.d %5.0d\n", 0, 0);
+	p =       printf("@moulitest: %5.d %5.0d\n", 0, 0);
 	printf("ft_p = %i\n   p = %i\n", ft_p, p);
 	return 0;
 }
