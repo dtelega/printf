@@ -6,12 +6,18 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:10:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:24:22 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/20 20:18:31 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ftprintf.h"
+#define LONG_MIN   (-2147483647L - 1)
+#define LLONG_MIN  (-9223372036854775807LL - 1)
+#define LLONG_MAX  9223372036854775807LL
+#define SHRT_MAX   32767
+#define SHRT_MIN   (-32767 - 1)
+#define LONG_MAX   2147483647L
 
 int		ft_printf(const char *format, ...);
 
@@ -28,10 +34,10 @@ int		main(int ac, char **av)
 	if (ac == 0 || av == 0)
 		return (0);
 	int i;
-	i = -1009987;
-	
-	ft_p = ft_printf("@moulitest: %5.d %5.0d\n", 0, 0);
-	p =       printf("@moulitest: %5.d %5.0d\n", 0, 0);
+	i = 1234;
+
+	ft_p = ft_printf("%hho, %hho\n", 0, 65635 + 42);
+	p =       printf("%hho, %hho\n", 0, 65535 + 42);
 	printf("ft_p = %i\n   p = %i\n", ft_p, p);
-	return 0;
+	return (0);
 }

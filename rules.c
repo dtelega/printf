@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:57:00 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:24:30 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/20 20:02:10 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 		specifer->flag_space = '\0';
 	if (specifer->flag_zero == '0' && specifer->accur >= 0)
 		specifer->flag_zero = '\0';
-	if (specifer->flag_zero == '0')
+	if (specifer->flag_zero == '0' && specifer->accur == -1)
 	{
 		i = 0;
 		while (s[i] == ' ')
@@ -44,7 +44,7 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 	return (s);
 }
 
-void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", mod - nety
+void	d_i(t_specifer *specifer, va_list *args, t_format *t_format)
 {
 	char	*s;
 	int		count;
@@ -53,8 +53,9 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 	if (!ft_strcmp(s, "0") && specifer->accur == 0)
 		s = "\0";
 	count = (int)ft_strlen(s);
-	while (specifer->accur-- > count && ft_strlen(s) != 0)
-		s = ft_strjoin("0", s);
+	if (specifer->accur > 0)
+		while (specifer->accur-- > count)
+			s = ft_strjoin("0", s);
 	if (specifer->flag_plus)
 	{
 		if (specifer->flag_plus == '+')
@@ -73,6 +74,17 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format) // "0", " ", m
 			s = ft_strjoin(" ", s);
 	}
 	s = d_i_check_flag(s, specifer);
+	ft_putstr(s);
+	t_format->len += ft_strlen(s);
+}
+
+void	d_big(t_specifer *specifer, va_list *args, t_format *t_format)
+{
+	char	*s;
+
+	s = ft_itoa_l(va_arg(*args, long));
+	if (!ft_strcmp(s, "0") && specifer->accur == 0)
+		s = "\0";
 	ft_putstr(s);
 	t_format->len += ft_strlen(s);
 }

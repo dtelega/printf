@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:29:20 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:11:28 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/20 19:15:02 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_specifer		get_specifer(t_format *t_format, int *i)
 		else if (cur >= '0' && cur <= '9')
 			specifer.weight = specifer.weight * 10 + cur - '0';
 	}
+	ft_without(&specifer, t_format);
 	*i += fl - 2;
 	return (specifer);
 }
@@ -58,7 +59,7 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 	else if (specifer->tr == 's' || specifer->tr == 'S') // done
 		s_s(specifer, va_arg(*args, char *), t_format);
 	else if (specifer->tr == 'D')
-		s = ft_itoa_l(va_arg(*args, long int));
+		d_big(specifer, args, t_format);
 	else if (specifer->tr == '%')            // done
 		procent(specifer, t_format);
 	else if (specifer->tr == 'f')
@@ -71,6 +72,7 @@ void	print_shit(t_specifer *specifer, va_list *args, t_format *t_format)
 		p_tr(args, specifer, t_format);
 	if (specifer->tr == 'u' || specifer->tr == 'U')
 		u_u(args, specifer, t_format);
+	free(s);
 }
 
 void	ft_convers_printf(t_format *t_format, va_list *args)

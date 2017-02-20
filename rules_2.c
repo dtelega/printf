@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:21:01 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 14:02:22 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/19 18:17:13 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	c_c(t_specifer *specifer, char *c, t_format *t_format)
 		{
 			if (!specifer->flag_minus)
 			{
-				if (specifer->flag_zero)
+				if (specifer->flag_zero == '0')
 					res = ft_strjoin("0", res);
 				else
 					res = ft_strjoin(" ", res);
@@ -37,7 +37,10 @@ void	c_c(t_specifer *specifer, char *c, t_format *t_format)
 				res = ft_strjoin(res, " ");
 		}
 	ft_putstr(res);
+	if (c[0] == 0)
+		write(1, "\0", 1);
 	t_format->len += ft_strlen(res);
+	free(res);
 }
 
 void	s_s(t_specifer *specifer, char *s, t_format *t_format)
@@ -45,12 +48,14 @@ void	s_s(t_specifer *specifer, char *s, t_format *t_format)
 	int		count;
 	char	*res;
 
-	if (s == NULL)
+	if (s == NULL && specifer->accur != 0)
 	{
 		ft_putstr("(null)");
 		t_format->len += 6;
 		return ;
 	}
+	else if (s == NULL && specifer->accur == 0)
+		s = "\0";
 	res = ft_strnew(ft_strlen(s));
 	res = ft_strcpy(res, s);
 	if (specifer->accur < (int)ft_strlen(res) && specifer->accur >= 0)
@@ -70,6 +75,7 @@ void	s_s(t_specifer *specifer, char *s, t_format *t_format)
 	}
 	ft_putstr(res);
 	t_format->len += ft_strlen(res);
+	free(res);
 }
 
 void	procent(t_specifer *specifer, t_format *t_format)
@@ -92,4 +98,5 @@ void	procent(t_specifer *specifer, t_format *t_format)
 		res = ft_strjoin(res, "%");
 	ft_putstr(res);
 	t_format->len += ft_strlen(res);
+	free(res);
 }

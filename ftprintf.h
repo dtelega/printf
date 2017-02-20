@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:17:17 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/19 14:39:37 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/20 19:06:56 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct		s_dtoa
 	size_t	ipart;
 }					t_dtoa;
 
+void				ft_without(t_specifer *specifer, t_format *t_format);
+char				*rm_minus(char *s);
 char				*ft_itoa_base_uintmax(uintmax_t value, int base);
 char				*ft_itoa_base_lun(unsigned long int value, int base);
 char				*u_u_get_s(va_list *args, t_specifer *specifer);
@@ -56,6 +58,7 @@ char				*ft_itoa_ll(long long int n);
 char				*ft_itoa_sig(signed char n);
 char				*d_i_get_s(va_list *args, t_specifer *specifer);
 t_specifer			clean_spec(t_specifer *specifer);
+void				d_big(t_specifer *specifer, va_list *args, t_format *t_format);
 void				p_tr(va_list *args, t_specifer *specifer, t_format *t_format);
 void				u_u(va_list *args, t_specifer *specifer, t_format *t_format);
 void				o_o(va_list *args, t_specifer *specifer, t_format *t_format);
