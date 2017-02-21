@@ -12,7 +12,7 @@
 
 #include "ftprintf.h"
 
-void	o_o(va_list *args, t_specifer *specifer, t_format *t_format)
+void	o_o(va_list *args, t_specifer *specifer, t_format *format)
 {
 	int		count;
 	char	*s;
@@ -25,7 +25,9 @@ void	o_o(va_list *args, t_specifer *specifer, t_format *t_format)
 		specifer->accur = specifer->weight;
 	while (specifer->accur > count++)
 		s = ft_strjoin("0", s);
-	if (specifer->flag_hesh == '#' && (ft_strcmp(s, "0") || specifer->accur == -1))
+	if (specifer->flag_hesh == '#' && (ft_strcmp(s, "0") ||
+		specifer->accur == -1) &&
+		(s[0] != '\0' ? specifer->accur < (int)ft_strlen(s) : 0 == 0))
 		s = ft_strjoin("0", s);
 	count = (int)ft_strlen(s);
 	while (specifer->weight > count++)
@@ -35,14 +37,11 @@ void	o_o(va_list *args, t_specifer *specifer, t_format *t_format)
 		else
 			s = ft_strjoin(" ", s);
 	}
-	ft_putstr(s);
-	t_format->len += ft_strlen(s);
-	free(s);
+	put_len(s, format, 1);
 }
 
-void	x_x(va_list *args, t_specifer *specifer, t_format *t_format)
+void	x_x(va_list *args, t_specifer *specifer, t_format *format, int count)
 {
-	int		count;
 	char	*s;
 
 	s = x_x_get_s(args, specifer);
@@ -67,12 +66,10 @@ void	x_x(va_list *args, t_specifer *specifer, t_format *t_format)
 	}
 	if (specifer->tr == 'x')
 		s = ft_tolowstr(s);
-	ft_putstr(s);
-	t_format->len += ft_strlen(s);
-	free(s);
+	put_len(s, format, 1);
 }
 
-void	u_u(va_list *args, t_specifer *specifer, t_format *t_format)
+void	u_u(va_list *args, t_specifer *specifer, t_format *format)
 {
 	int		count;
 	char	*s;
@@ -93,16 +90,14 @@ void	u_u(va_list *args, t_specifer *specifer, t_format *t_format)
 		else
 			s = ft_strjoin(" ", s);
 	}
-	ft_putstr(s);
-	t_format->len += ft_strlen(s);
-	free(s);
+	put_len(s, format, 1);
 }
 
-void	p_tr(va_list *args, t_specifer *specifer, t_format *t_format)
+void	p_tr(va_list *args, t_specifer *specifer, t_format *format)
 {
 	char				*s;
 	int					count;
-	unsigned long long 	ptr;
+	unsigned long long	ptr;
 
 	s = ft_strnew(1);
 	if (!(ptr = (unsigned long long)va_arg(*args, void *)))
@@ -124,7 +119,5 @@ void	p_tr(va_list *args, t_specifer *specifer, t_format *t_format)
 		else
 			s = ft_strjoin(" ", s);
 	}
-	ft_putstr(s);
-	t_format->len += ft_strlen(s);
-	free(s);
+	put_len(s, format, 1);
 }

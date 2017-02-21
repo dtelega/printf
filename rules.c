@@ -12,11 +12,6 @@
 
 #include "ftprintf.h"
 
-int		max(int a, int b, int c)
-{
-	return ((a > b)? ((a > c)? a : c) : ((b > c)? b : c));
-}
-
 char		*d_i_check_flag(char *s, t_specifer *specifer)
 {
 	int		i;
@@ -44,26 +39,22 @@ char		*d_i_check_flag(char *s, t_specifer *specifer)
 	return (s);
 }
 
-void	d_i(t_specifer *specifer, va_list *args, t_format *t_format)
+void		d_i(t_specifer *specifer, va_list *args, t_format *formats,
+				int count)
 {
 	char	*s;
-	int		count;
 
-	s = d_i_get_s(args, specifer);
-	if (!ft_strcmp(s, "0") && specifer->accur == 0)
+	s = d_i_get_s(args, specifer, &count);
+	if (!ft_strcmp(s, "0") && specifer->accur == 0 && (count = 0) == 0)
 		s = "\0";
-	count = (int)ft_strlen(s);
 	if (specifer->accur > 0)
 		while (specifer->accur-- > count)
 			s = ft_strjoin("0", s);
-	if (specifer->flag_plus)
-	{
-		if (specifer->flag_plus == '+')
-			s = ft_strjoin("+", s);
-		else if (specifer->flag_plus == '-')
-			s = ft_strjoin("-", s);
-	}
-	else if (!specifer->flag_plus && specifer->flag_space)
+	if (specifer->flag_plus == '+')
+		s = ft_strjoin("+", s);
+	else if (specifer->flag_plus == '-')
+		s = ft_strjoin("-", s);
+	if (!specifer->flag_plus && specifer->flag_space)
 		s = ft_strjoin(" ", s);
 	count = ft_strlen(s);
 	while (specifer->weight-- > count)
@@ -74,11 +65,10 @@ void	d_i(t_specifer *specifer, va_list *args, t_format *t_format)
 			s = ft_strjoin(" ", s);
 	}
 	s = d_i_check_flag(s, specifer);
-	ft_putstr(s);
-	t_format->len += ft_strlen(s);
+	put_len(s, formats, 0);
 }
 
-void	d_big(t_specifer *specifer, va_list *args, t_format *t_format)
+void		d_big(t_specifer *specifer, va_list *args, t_format *formats)
 {
 	char	*s;
 
@@ -86,5 +76,5 @@ void	d_big(t_specifer *specifer, va_list *args, t_format *t_format)
 	if (!ft_strcmp(s, "0") && specifer->accur == 0)
 		s = "\0";
 	ft_putstr(s);
-	t_format->len += ft_strlen(s);
+	formats->len += ft_strlen(s);
 }

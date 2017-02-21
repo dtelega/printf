@@ -12,7 +12,7 @@
 
 #include "ftprintf.h"
 
-void	ft_without(t_specifer *specifer, t_format *t_format)
+void	ft_without(t_specifer *specifer, t_format *format)
 {
 	char	*s;
 	int		i;
@@ -28,6 +28,6 @@ void	ft_without(t_specifer *specifer, t_format *t_format)
 	while (i != specifer->weight - 1)
 		s[i++] = field;
 	ft_putstr(s);
-	t_format->len += ft_strlen(s);
+	format->len += ft_strlen(s);
 	free(s);
 }

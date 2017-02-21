@@ -6,13 +6,13 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 12:43:54 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 13:08:02 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:06:43 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*res_llun(int i, int n, int *convert)
+char		*res_llun(int i, int n, int *convert)
 {
 	char	*base;
 	char	*res;

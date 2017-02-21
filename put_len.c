@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clen_spec.c                                        :+:      :+:    :+:   */
+/*   put_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 17:49:42 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/21 20:09:50 by dtelega          ###   ########.fr       */
+/*   Created: 2017/02/21 18:02:07 by dtelega           #+#    #+#             */
+/*   Updated: 2017/02/21 18:03:36 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
 
-t_specifer		clean_spec(t_specifer *specifer)
+void	put_len(char *res, t_format *format, int can_free)
 {
-	specifer->flag_minus = '\0';
-	specifer->flag_plus = '\0';
-	specifer->flag_space = '\0';
-	specifer->flag_hesh = '\0';
-	specifer->weight = 0;
-	specifer->accur = -1;
-	specifer->modify = '\0';
-	specifer->tr = '\0';
-	return (*specifer);
+	ft_putstr(res);
+	format->len += ft_strlen(res);
+	if (can_free == 1)
+		free(res);
 }

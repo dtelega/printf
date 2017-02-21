@@ -6,7 +6,7 @@
 /*   By: dtelega <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 14:35:32 by dtelega           #+#    #+#             */
-/*   Updated: 2017/02/18 15:23:41 by dtelega          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:05:35 by dtelega          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ long long int		ft_atoi_ll(const char *str)
 
 	i = 0;
 	nb = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-		   str[i] == '\v' || str[i] == '\r' || str[i] == '\f')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\r' || str[i] == '\f')
 		i++;
 	if (str[i] == '-')
 		negative = 1;

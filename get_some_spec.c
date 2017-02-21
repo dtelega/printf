@@ -12,7 +12,7 @@
 
 #include "ftprintf.h"
 
-int		its_flag(char cur, char prev)
+int			its_flag(char cur, char prev)
 {
 	if (cur == '-' || cur == '+' || cur == ' ' || cur == '#' ||
 		(cur == '0' && (prev <= '0' || prev > '9')))
@@ -20,7 +20,7 @@ int		its_flag(char cur, char prev)
 	return (0);
 }
 
-void	get_modify(char cur, t_specifer *specifer, char next, int *i)
+void		get_modify(char cur, t_specifer *specifer, char next, int *i)
 {
 	if (cur == 'z')
 		specifer->modify = 'z';
@@ -31,8 +31,8 @@ void	get_modify(char cur, t_specifer *specifer, char next, int *i)
 	else if (cur == 'l' && next != 'l' && specifer->modify != 'L')
 		specifer->modify = 'l';
 	else if (cur == 'h' && next != 'h' && specifer->modify != 'L' &&
-			 specifer->modify != 'l' && specifer->modify != 'z' &&
-			 specifer->modify != 'j')
+			specifer->modify != 'l' && specifer->modify != 'z' &&
+			specifer->modify != 'j')
 		specifer->modify = 'h';
 	else if (cur == 'h' && next == 'h' && !specifer->modify)
 	{
@@ -41,20 +41,20 @@ void	get_modify(char cur, t_specifer *specifer, char next, int *i)
 	}
 }
 
-int		its_modify(char cur)
+int			its_modify(char cur)
 {
 	if (cur == 'l' || cur == 'h' || cur == 'j' || cur == 'z')
 		return (1);
 	return (0);
 }
 
-void		get_accur(t_format *t_format, int *i, int *fl, t_specifer *specifer)
+void		get_accur(t_format *format, int *i, int *fl, t_specifer *specifer)
 {
 	int		res;
 	char	cur;
 
 	res = 0;
-	while ((cur = t_format->format[*i + *fl]) >= '0' && cur <= '9')
+	while ((cur = format->format[*i + *fl]) >= '0' && cur <= '9')
 	{
 		res = res * 10 + cur - '0';
 		(*fl)++;

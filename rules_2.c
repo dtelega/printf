@@ -12,17 +12,15 @@
 
 #include "ftprintf.h"
 
-void	c_c(t_specifer *specifer, char *c, t_format *t_format)
+void	c_c(t_specifer *specifer, char *c, t_format *format, int i)
 {
 	char	*res;
-	int		i;
 
 	res = ft_strnew(1);
 	if (c[0] != 0)
 		res = ft_strcpy(res, c);
 	else
-		t_format->len++;
-	i = 0;
+		format->len++;
 	if (specifer->weight > 0)
 		while (i++ + 1 != specifer->weight)
 		{
@@ -39,21 +37,28 @@ void	c_c(t_specifer *specifer, char *c, t_format *t_format)
 	ft_putstr(res);
 	if (c[0] == 0)
 		write(1, "\0", 1);
-	t_format->len += ft_strlen(res);
+	format->len += ft_strlen(res);
 	free(res);
 }
 
-void	s_s(t_specifer *specifer, char *s, t_format *t_format)
+int		check_s_null(char *s, t_specifer *specifer, t_format *format)
+{
+	if (s == NULL && specifer->accur != 0)
+	{
+		ft_putstr("(null)");
+		format->len += 6;
+		return (1);
+	}
+	return (0);
+}
+
+void	s_s(t_specifer *specifer, char *s, t_format *format)
 {
 	int		count;
 	char	*res;
 
-	if (s == NULL && specifer->accur != 0)
-	{
-		ft_putstr("(null)");
-		t_format->len += 6;
+	if (check_s_null(s, specifer, format) == 1)
 		return ;
-	}
 	else if (s == NULL && specifer->accur == 0)
 		s = "\0";
 	res = ft_strnew(ft_strlen(s));
@@ -73,12 +78,10 @@ void	s_s(t_specifer *specifer, char *s, t_format *t_format)
 				res = ft_strjoin("0", res);
 		}
 	}
-	ft_putstr(res);
-	t_format->len += ft_strlen(res);
-	free(res);
+	put_len(res, format, 1);
 }
 
-void	procent(t_specifer *specifer, t_format *t_format)
+void	procent(t_specifer *specifer, t_format *format)
 {
 	char	*res;
 	char	field;
@@ -97,6 +100,6 @@ void	procent(t_specifer *specifer, t_format *t_format)
 	else
 		res = ft_strjoin(res, "%");
 	ft_putstr(res);
-	t_format->len += ft_strlen(res);
+	format->len += ft_strlen(res);
 	free(res);
 }
